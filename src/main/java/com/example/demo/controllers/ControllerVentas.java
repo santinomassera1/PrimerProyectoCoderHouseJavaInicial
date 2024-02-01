@@ -16,7 +16,7 @@ public class ControllerVentas {
     @Autowired
     private VentaService ventaService;
 
-    @GetMapping
+    @GetMapping("/todas")
     public List<Venta> obtenerTodasLasVentas() {
         return ventaService.obtenerTodasLasVentas();
     }

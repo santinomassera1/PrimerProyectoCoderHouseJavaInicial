@@ -13,7 +13,7 @@ public class ControllerProducto {
     @Autowired
     private ProductoService productoService;
 
-    @GetMapping
+    @GetMapping("/todos")
     public List<Producto> getProductos() {
         return productoService.obtenerProductos();
     }
