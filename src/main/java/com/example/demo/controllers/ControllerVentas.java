@@ -21,6 +21,12 @@ public class ControllerVentas {
         return ventaService.obtenerTodasLasVentas();
     }
 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Venta> obtenerVenta(@PathVariable Long id) {
+        return ventaService.obtenerVentaPorId(id);
+    }
+
     @PostMapping("/crearComprobante")
     public ResponseEntity<String> crearComprobanteVenta(@RequestBody Venta venta) {
         return ventaService.agregarVenta(venta);

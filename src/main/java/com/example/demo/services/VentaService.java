@@ -27,6 +27,13 @@ public class VentaService {
         return repositoryVenta.findAll();
     }
 
+    public ResponseEntity<Venta> obtenerVentaPorId(Long id) {
+        Optional<Venta> ventaOptional = repositoryVenta.findById(id);
+        return ventaOptional.map(venta -> new ResponseEntity<>(venta, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
     public ResponseEntity<String> agregarVenta(Venta venta) {
         try {
             repositoryVenta.save(venta);
@@ -113,7 +120,6 @@ public class VentaService {
             }
         }
     }
-
 
     private void mostrarComprobante(String fecha, String cliente, List<Producto> productos, double totalVenta) {
         System.out.println("Fecha: " + fecha);
