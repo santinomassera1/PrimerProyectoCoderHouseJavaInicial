@@ -21,6 +21,10 @@ public class ControllerVentas {
         return ventaService.obtenerTodasLasVentas();
     }
 
+    @PostMapping("/crearComprobante")
+    public ResponseEntity<String> crearComprobanteVenta(@RequestBody Venta venta) {
+        return ventaService.agregarVenta(venta);
+    }
     @PostMapping("/alta")
     public ResponseEntity<String> agregarVenta(@RequestBody Venta venta) {
         return ventaService.agregarVenta(venta);

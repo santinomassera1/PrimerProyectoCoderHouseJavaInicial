@@ -22,11 +22,10 @@ public class Producto {
     @Column
     private double precio;
 
-    @Column(name="stock_minimo")
-    private int stockMinimo;
+    private int stock;
 
-    @Column(name="stock_maximo")
-    private int stockMaximo;
+    @Column(name="cant_vendida")
+    private int cantVendida;
 
     public long getId() {
         return id;
@@ -60,19 +59,19 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getStockMinimo() {
-        return stockMinimo;
+    public int getStock() {
+        return stock;
     }
 
-    public void setStockMinimo(int stockMinimo) {
-        this.stockMinimo = stockMinimo;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public int getStockMaximo() {
-        return stockMaximo;
+    public int getCantVendida() {
+        return cantVendida;
     }
 
-    public void setStockMaximo(int stockMaximo) {
-        this.stockMaximo = stockMaximo;
+    public void setCantVendida(int cantVendida) {
+        this.cantVendida = cantVendida;
     }
 }

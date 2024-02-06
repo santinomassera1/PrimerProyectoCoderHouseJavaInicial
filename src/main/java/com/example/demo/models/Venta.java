@@ -21,7 +21,7 @@ public class Venta {
 
     @ManyToMany
     @JoinTable(
-            name = "venta_productos",
+            name = "comprobante",
             joinColumns = @JoinColumn(name = "venta_id"),
             inverseJoinColumns = @JoinColumn(name = "producto_id")
     )

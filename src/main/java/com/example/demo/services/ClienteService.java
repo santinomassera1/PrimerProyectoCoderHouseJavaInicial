@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.models.Cliente;
-import com.example.demo.repository.Repository;
+import com.example.demo.repository.RepositoryCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class ClienteService {
 
     @Autowired
-    private Repository repo;
+    private RepositoryCliente repo;
 
     public List<Cliente> obtenerClientes() {
         return repo.findAll();

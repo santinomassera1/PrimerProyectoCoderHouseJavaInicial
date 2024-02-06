@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 import com.example.demo.models.Producto;
 import com.example.demo.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,10 @@ public class ControllerProducto {
     @PutMapping("/modificar/{id}")
     public String actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
         return productoService.actualizarProducto(id, producto);
+    }
+    @PutMapping("/actualizarPrecio/{id}")
+    public ResponseEntity<String> actualizarPrecioProducto(@PathVariable Long id, @RequestParam double nuevoPrecio) {
+        return productoService.actualizarPrecioProducto(id, nuevoPrecio);
     }
 
     @DeleteMapping("/baja/{id}")
