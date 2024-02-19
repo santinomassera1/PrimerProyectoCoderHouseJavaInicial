@@ -25,24 +25,25 @@ public class ProductoService {
         return productoOptional.orElse(null);
     }
 
-    public String agregarProducto(Producto producto) {
+
+    public ResponseEntity<String> agregarProducto(Producto producto) {
         repositoryProduct.save(producto);
-        return "Guardado";
+        return new ResponseEntity<>("Guardado", HttpStatus.CREATED);
     }
 
-    public String actualizarProducto(Long id, Producto producto) {
+    public ResponseEntity<String> actualizarProducto(Long id, Producto producto) {
         Producto productoExistente = repositoryProduct.findById(id).orElse(null);
 
         if (productoExistente != null) {
             productoExistente.setNombre(producto.getNombre());
             productoExistente.setDescripcion(producto.getDescripcion());
             productoExistente.setPrecio(producto.getPrecio());
-            productoExistente.setStock(producto.getStock()); // Asume que hay un atributo 'stock' en Producto
+            productoExistente.setStock(producto.getStock());
 
             repositoryProduct.save(productoExistente);
-            return "Modificado";
+            return new ResponseEntity<>("Modificado", HttpStatus.OK);
         } else {
-            return "Producto no encontrado";
+            return new ResponseEntity<>("Producto no encontrado", HttpStatus.NOT_FOUND);
         }
     }
     public ResponseEntity<String> actualizarPrecioProducto(Long id, double nuevoPrecio) {
@@ -58,21 +59,23 @@ public class ProductoService {
         }
     }
 
-    public String eliminarProducto(Long id) {
+    public ResponseEntity<String> eliminarProducto(Long id) {
         Producto productoExistente = repositoryProduct.findById(id).orElse(null);
 
         if (productoExistente != null) {
             repositoryProduct.delete(productoExistente);
-            return "Eliminado";
+            return new ResponseEntity<>("Eliminado", HttpStatus.OK);
         } else {
-            return "Producto no encontrado";
+            return new ResponseEntity<>("Producto no encontrado", HttpStatus.NOT_FOUND);
         }
     }
 
-    public void restarStockDeProducto(Producto producto, int cantidad) {
-        if (producto != null) {
-            int stockActual = producto.getStock();
-            producto.setStock(stockActual - cantidad);
+    public void guardarProducto(Producto producto) {
+        repositoryProduct.save(producto);
+    }
+    public void agregarStockAProducto(Producto producto, int cantidad) {
+        if (cantidad > 0) {
+            producto.setStock(producto.getStock() + cantidad);
             repositoryProduct.save(producto);
         }
     }

@@ -72,11 +72,9 @@ public class Venta {
         this.total = total;
     }
 
-    // Métodos adicionales, si es necesario
 
     private double calcularTotal() {
-        // Implementa la lógica para calcular el total de la venta
-        // Puedes sumar los precios de los productos, aplicar descuentos, etc.
+
         return 0.0;
     }
 }

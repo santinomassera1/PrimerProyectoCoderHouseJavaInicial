@@ -1,8 +1,8 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.Producto;
 import com.example.demo.models.Venta;
 import com.example.demo.services.VentaService;
+import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +27,11 @@ public class ControllerVentas {
         return ventaService.obtenerVentaPorId(id);
     }
 
-    @PostMapping("/crearComprobante")
-    public ResponseEntity<String> crearComprobanteVenta(@RequestBody Venta venta) {
-        return ventaService.agregarVenta(venta);
+    @GetMapping("/comprobante/{id}")
+    public ResponseEntity<String> obtenerComprobanteVenta(@PathVariable Long id) {
+        return ventaService.generarComprobanteVenta(id);
     }
+
     @PostMapping("/alta")
     public ResponseEntity<String> agregarVenta(@RequestBody Venta venta) {
         return ventaService.agregarVenta(venta);
@@ -39,5 +40,10 @@ public class ControllerVentas {
     @PutMapping("/modificar/{id}")
     public ResponseEntity<String> modificarVenta(@PathVariable Long id, @RequestBody Venta venta) {
         return ventaService.modificarVenta(id, venta);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarVenta(@PathVariable Long id) {
+        return ventaService.eliminarVentaPorId(id);
     }
 }

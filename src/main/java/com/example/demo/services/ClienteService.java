@@ -3,6 +3,8 @@ package com.example.demo.services;
 import com.example.demo.models.Cliente;
 import com.example.demo.repository.RepositoryCliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,8 +26,7 @@ public class ClienteService {
         repo.save(cliente);
         return "Guardado";
     }
-
-    public String actualizarCliente(Long id, Cliente cliente) {
+    public ResponseEntity<String> actualizarCliente(Long id, Cliente cliente) {
         Cliente clienteExistente = repo.findById(id).orElse(null);
 
         if (clienteExistente != null) {
@@ -33,20 +34,20 @@ public class ClienteService {
             clienteExistente.setApellido(cliente.getApellido());
             clienteExistente.setEmail(cliente.getEmail());
             repo.save(clienteExistente);
-            return "Modificado";
+            return new ResponseEntity<>("Modificado", HttpStatus.OK);
         } else {
-            return "Cliente no encontrado";
+            return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
         }
     }
 
-    public String eliminarCliente(Long id) {
+    public ResponseEntity<String> eliminarCliente(Long id) {
         Cliente clienteExistente = repo.findById(id).orElse(null);
 
         if (clienteExistente != null) {
             repo.delete(clienteExistente);
-            return "Eliminado";
+            return new ResponseEntity<>("Eliminado", HttpStatus.OK);
         } else {
-            return "Cliente no encontrado";
+            return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
         }
     }
 }

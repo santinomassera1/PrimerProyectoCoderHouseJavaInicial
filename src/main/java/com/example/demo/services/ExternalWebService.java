@@ -6,7 +6,7 @@ public class ExternalWebService {
 
     public String obtenerFecha(){
         RestTemplate restTemplate = new RestTemplate();
-        String fecha = restTemplate.getForObject("http://localhost:8080/", String.class);
+        String fecha = restTemplate.getForObject("https://github.com/santinomassera1/PrimerProyectoCoderHouseJavaInicial.git", String.class);
         return fecha;
     }
 }

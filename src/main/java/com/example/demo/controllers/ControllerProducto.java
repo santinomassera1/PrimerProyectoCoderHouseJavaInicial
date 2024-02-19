@@ -20,12 +20,12 @@ public class ControllerProducto {
     }
 
     @PostMapping("/alta")
-    public String agregarProducto(@RequestBody Producto producto) {
+    public ResponseEntity<String> agregarProducto(@RequestBody Producto producto) {
         return productoService.agregarProducto(producto);
     }
 
     @PutMapping("/modificar/{id}")
-    public String actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
+    public ResponseEntity<String> actualizarProducto(@PathVariable Long id, @RequestBody Producto producto) {
         return productoService.actualizarProducto(id, producto);
     }
     @PutMapping("/actualizarPrecio/{id}")
@@ -34,7 +34,7 @@ public class ControllerProducto {
     }
 
     @DeleteMapping("/baja/{id}")
-    public String eliminarProducto(@PathVariable Long id) {
+    public ResponseEntity<String> eliminarProducto(@PathVariable Long id) {
         return productoService.eliminarProducto(id);
     }
 }
